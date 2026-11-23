@@ -1,0 +1,15 @@
+const express = require('express');
+const path = require('path');
+const app = express();
+app.set('view engine','ejs');
+app.set('views',path.join(__dirname,'Express-app','views'));
+app.use(express.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname,'Express-app','public')));
+app.get('/',(req,res)=>res.render('index',{title:'Home',message:'Welcome to our Express app!'}));
+app.get('/about',(req,res)=>res.render('about',{title:'About',team:['Amit','Neha','Rohan']}));
+app.get('/services',(req,res)=>res.render('services',{title:'Services',services:[{name:'Web Development',price:15000},{name:'App Development',price:25000},{name:'UI / UX Design',price:10000}]}));
+app.get('/contact',(req,res)=>res.render('contact',{title:'Contact'}));
+app.post('/contact',(req,res)=>{const{name,email,message}=req.body;console.log('New message:',name,email,message);res.render('thanks',{title:'Thank You',name})});
+app.get('/user/:name',(req,res)=>res.render('profile',{title:'Profile',name:req.params.name,tab:req.query.tab||'info'}));
+app.use((req,res)=>res.status(404).send('404 - Page Not Found'));
+app.listen(3000,()=>console.log('Server running at http://localhost:3000'));

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Random Jokes</title>
+<style>
+ body{font-family:Arial,sans-serif;background:#ffeaa7;display:flex;justify-content:center;padding-top:70px}
+ .box{background:#fff;width:480px;padding:30px;border-radius:12px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+ #setup{font-size:20px;font-weight:bold;min-height:50px}#punchline{font-size:18px;color:#d35400;min-height:40px}
+ button{padding:10px 22px;font-size:16px;border:none;border-radius:6px;background:#e17055;color:#fff;cursor:pointer}button:disabled{background:#b2bec3}
+</style></head>
+<body><div class="box"><h1>Random Joke Generator</h1><p id="setup"></p><p id="punchline"></p><button id="btn">Get a Joke</button></div>
+<script>
+ const API_URL='https://official-joke-api.appspot.com/random_joke';
+ const setupEl=document.getElementById('setup'),punchEl=document.getElementById('punchline'),btn=document.getElementById('btn');
+ async function getJoke(){btn.disabled=true;setupEl.textContent='Loading...';punchEl.textContent='';
+  try{const response=await fetch(API_URL);if(!response.ok)throw new Error('Server returned '+response.status);const data=await response.json();setupEl.textContent=data.setup;punchEl.textContent=data.punchline}
+  catch(error){setupEl.textContent='Could not load a joke. Check your internet connection.';console.error(error)}
+  finally{btn.disabled=false}
+ }btn.addEventListener('click',getJoke);getJoke();
+</script></body></html>

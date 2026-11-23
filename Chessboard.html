@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Chessboard</title></head>
+<body>
+<script>
+  const body=document.body;
+  Object.assign(body.style,{margin:'0',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',background:'#2c3e50',fontFamily:'Arial, sans-serif'});
+  const title=document.createElement('h2'); title.textContent='Chessboard'; title.style.color='#ecf0f1'; body.appendChild(title);
+  const board=document.createElement('div');
+  Object.assign(board.style,{display:'grid',gridTemplateColumns:'repeat(8,70px)',gridTemplateRows:'repeat(8,70px)',border:'8px solid #4e342e',boxShadow:'0 6px 20px rgba(0,0,0,.5)'});
+  body.appendChild(board);
+  const light='#f0d9b5', dark='#b58863', files='abcdefgh';
+  for(let row=0;row<8;row++){ for(let col=0;col<8;col++){
+    const square=document.createElement('div'), isLight=(row+col)%2===0;
+    Object.assign(square.style,{backgroundColor:isLight?light:dark,color:isLight?dark:light,fontSize:'12px',fontWeight:'bold',display:'flex',alignItems:'flex-end',padding:'3px',boxSizing:'border-box'});
+    square.textContent=files[col]+(8-row);
+    square.addEventListener('mouseover',()=>square.style.outline='3px solid #27ae60');
+    square.addEventListener('mouseout',()=>square.style.outline='none');
+    board.appendChild(square);
+  }}
+</script>
+</body>
+</html>

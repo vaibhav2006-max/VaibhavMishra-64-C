@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Snake and Ladder</title>
+<style>
+ body{font-family:Arial,sans-serif;background:#eef1f5;text-align:center}
+ #board{display:grid;grid-template-columns:repeat(10,56px);grid-template-rows:repeat(10,56px);width:560px;margin:15px auto;border:4px solid #333}
+ .cell{position:relative;border:1px solid #aaa;font-size:11px;box-sizing:border-box;padding:2px;text-align:left}
+ .cell:nth-child(odd){background:#fdf6e3}.cell:nth-child(even){background:#e8f1d8}
+ .snake{background:#f5b7b1!important}.ladder{background:#aed6f1!important}
+ .tag{position:absolute;bottom:2px;right:3px;font-weight:bold;font-size:10px}
+ .token{position:absolute;width:18px;height:18px;border-radius:50%;border:2px solid #fff;top:18px}
+ button{padding:10px 24px;font-size:16px;cursor:pointer} #dice{display:inline-block;width:44px;height:44px;line-height:44px;border:2px solid #333;border-radius:8px;background:#fff;font-size:24px;margin-left:10px}
+</style></head>
+<body>
+<h2>Snake and Ladder</h2><div id="board"></div><button id="roll">Roll Dice</button><span id="dice">-</span><p id="turn"></p><p id="msg"></p>
+<script>
+ const snakes={16:6,46:25,49:11,62:19,64:60,74:53,89:68,92:88,95:75,99:80};
+ const ladders={2:38,7:14,8:31,15:26,21:42,28:84,36:44,51:67,71:91,78:98,87:94};
+ const players=[{name:'Player 1',color:'#e74c3c',pos:0},{name:'Player 2',color:'#2980b9',pos:0}];
+ let turn=0,gameOver=false;
+ const boardEl=document.getElementById('board'),rollBtn=document.getElementById('roll'),diceEl=document.getElementById('dice'),turnEl=document.getElementById('turn'),msgEl=document.getElementById('msg'),cells={};
+ for(let displayRow=0;displayRow<10;displayRow++){const rowFromBottom=9-displayRow;for(let displayCol=0;displayCol<10;displayCol++){
+   const number=rowFromBottom*10+(rowFromBottom%2===0?displayCol+1:10-displayCol);
+   const cell=document.createElement('div');cell.className='cell';cell.textContent=number;
+   if(snakes[number]){cell.classList.add('snake');cell.innerHTML+='<span class="tag">S to '+snakes[number]+'</span>'}
+   else if(ladders[number]){cell.classList.add('ladder');cell.innerHTML+='<span class="tag">L to '+ladders[number]+'</span>'}
+   cells[number]=cell;boardEl.appendChild(cell);
+ }}
+ function draw(){document.querySelectorAll('.token').forEach(t=>t.remove());players.forEach((p,index)=>{if(p.pos===0)return;const token=document.createElement('div');token.className='token';token.style.background=p.color;token.style.left=(4+index*22)+'px';cells[p.pos].appendChild(token)});
+  turnEl.textContent=gameOver?'':players[turn].name+"'s turn";turnEl.style.color=players[turn].color}
+ rollBtn.addEventListener('click',()=>{if(gameOver)return;const p=players[turn],dice=Math.floor(Math.random()*6)+1;diceEl.textContent=dice;let msg=p.name+' rolled '+dice+'. ';
+  if(p.pos+dice<=100){p.pos+=dice;if(snakes[p.pos]){msg+='Snake! Slid down to '+snakes[p.pos]+'. ';p.pos=snakes[p.pos]}else if(ladders[p.pos]){msg+='Ladder! Climbed up to '+ladders[p.pos]+'. ';p.pos=ladders[p.pos]}}else msg+='Exact number needed to reach 100. ';
+  if(p.pos===100){gameOver=true;rollBtn.disabled=true;msg+=p.name+' WINS!'}else if(dice===6){msg+='Six! Roll again.'}else turn=(turn+1)%players.length;
+  msgEl.textContent=msg;draw();
+ });draw();
+</script>
+</body></html>
