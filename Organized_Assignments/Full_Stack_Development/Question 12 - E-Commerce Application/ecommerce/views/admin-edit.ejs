@@ -1,0 +1,22 @@
+<%- include('header') %>
+
+<h1>Edit Product</h1>
+
+<form method="POST" action="/admin/edit/<%= product._id %>" style="max-width:450px">
+  <label for="name">Product name</label>
+  <input id="name" type="text" name="name" value="<%= product.name %>" required>
+
+  <label for="price">Price</label>
+  <input id="price" type="number" name="price" value="<%= product.price %>" min="0" step="0.01" required>
+
+  <label for="image">Image URL</label>
+  <input id="image" type="url" name="image" value="<%= product.image %>">
+
+  <label for="description">Description</label>
+  <textarea id="description" name="description"><%= product.description %></textarea>
+
+  <button type="submit">Save Changes</button>
+  <a href="/admin">Cancel</a>
+</form>
+
+<%- include('footer') %>

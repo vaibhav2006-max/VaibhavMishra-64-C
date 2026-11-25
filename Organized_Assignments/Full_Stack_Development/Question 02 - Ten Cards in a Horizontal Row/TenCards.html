@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ten Cards</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #eef1f5; }
+    h1 { text-align: center; color: #333; }
+    .cards { display: flex; flex-wrap: nowrap; gap: 20px; overflow-x: auto; padding: 20px; }
+    .card { flex: 0 0 250px; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.15); overflow: hidden; }
+    .card img { width: 100%; height: 160px; object-fit: cover; display: block; }
+    .body { padding: 12px 14px; }
+    .body h3 { margin: 0 0 6px; }
+    .body p { margin: 0; font-size: 14px; color: #555; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <h1>Travel Cards</h1>
+  <div class="cards">
+    <div class="card"><img src="https://picsum.photos/seed/c1/400/250" alt="Mountain"><div class="body"><h3>Mountain Trek</h3><p>Fresh air, steep trails and views above the clouds.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c2/400/250" alt="Beach"><div class="body"><h3>Beach Escape</h3><p>Golden sand, blue water and relaxing sunsets.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c3/400/250" alt="City"><div class="body"><h3>City Lights</h3><p>Skyscrapers, street food and a city that never sleeps.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c4/400/250" alt="Forest"><div class="body"><h3>Forest Walk</h3><p>Tall trees, birdsong and quiet green paths.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c5/400/250" alt="Desert"><div class="body"><h3>Desert Safari</h3><p>Dunes, camel rides and a sky full of stars at night.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c6/400/250" alt="Snow"><div class="body"><h3>Snow Peaks</h3><p>Skiing, snowball fights and hot chocolate by the fire.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c7/400/250" alt="Lake"><div class="body"><h3>Lake View</h3><p>Calm water, boat rides and perfect reflections.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c8/400/250" alt="Island"><div class="body"><h3>Island Hop</h3><p>Hop between small islands with crystal-clear lagoons.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c9/400/250" alt="Old town"><div class="body"><h3>Old Town</h3><p>Narrow lanes, ancient forts and local markets.</p></div></div>
+    <div class="card"><img src="https://picsum.photos/seed/c10/400/250" alt="Night sky"><div class="body"><h3>Night Sky</h3><p>Camp far from city lights and watch the Milky Way.</p></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+<%- include('partials/header') %>
+<h1>Our Services</h1><table border="1" cellpadding="8"><tr><th>Service</th><th>Price (Rs.)</th></tr><% services.forEach(s => { %><tr><td><%= s.name %></td><td><%= s.price %></td></tr><% }) %></table>
+<%- include('partials/footer') %>

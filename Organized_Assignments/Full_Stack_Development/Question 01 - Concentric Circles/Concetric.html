@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Concentric Circles</title>
+  <style>
+    body { margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: #f4f4f4; }
+    .container { position: relative; width: 60px; height: 60px; }
+    .circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; }
+    .c30 { width: 60px; height: 60px; background: #e74c3c; }
+    .c20 { width: 40px; height: 40px; background: #f1c40f; }
+    .c10 { width: 20px; height: 20px; background: #2980b9; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="circle c30"></div><div class="circle c20"></div><div class="circle c10"></div>
+  </div>
+</body>
+</html>
